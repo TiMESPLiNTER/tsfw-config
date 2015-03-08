@@ -1,0 +1,28 @@
+<?xml version="1.0" ?>
+<config>
+    <items>
+        <item>
+            <part_no>F6785</part_no>
+            <descrip>Flat "Sapphire" Slippers</descrip>
+            <size>10</size>
+            <price>100.27</price>
+            <quantity>4</quantity>
+        </item>
+
+        <item>
+            <part_no>F6787</part_no>
+            <descrip>Flat "Sapphire" Slippers II</descrip>
+            <size>10</size>
+            <price>120.35</price>
+            <quantity>2</quantity>
+        </item>
+    </items>
+
+    <services>
+        <service>
+            <url>https://www.google.com</url>
+        </service>
+    </services>
+
+    <singlevalue>23.45</singlevalue>
+</config>

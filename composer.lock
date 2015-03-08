@@ -1,7 +1,8 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
+        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
     ],
     "hash": "a8c5ce20db4c47c2473e4f48671fe541",
     "packages": [
@@ -54,16 +55,16 @@
         },
         {
             "name": "timesplinter/tsfw-common",
-            "version": "v0.1.3",
+            "version": "v0.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/TiMESPLiNTER/tsfw-common.git",
-                "reference": "66899be4956da416eacddda8fad1de5785155be7"
+                "reference": "30107cbc93bfcba3df3145bcb6fd3b96666dd3d3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/TiMESPLiNTER/tsfw-common/zipball/66899be4956da416eacddda8fad1de5785155be7",
-                "reference": "66899be4956da416eacddda8fad1de5785155be7",
+                "url": "https://api.github.com/repos/TiMESPLiNTER/tsfw-common/zipball/30107cbc93bfcba3df3145bcb6fd3b96666dd3d3",
+                "reference": "30107cbc93bfcba3df3145bcb6fd3b96666dd3d3",
                 "shasum": ""
             },
             "require": {
@@ -96,7 +97,7 @@
                 "common",
                 "tsfw"
             ],
-            "time": "2015-03-02 14:14:51"
+            "time": "2015-03-08 15:52:16"
         }
     ],
     "packages-dev": [
@@ -1008,6 +1009,8 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
     "platform": [],
     "platform-dev": []
 }

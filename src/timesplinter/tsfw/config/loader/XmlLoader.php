@@ -2,6 +2,7 @@
 
 namespace timesplinter\tsfw\config\loader;
 
+use timesplinter\tsfw\common\StringUtils;
 use timesplinter\tsfw\config\exception\LoadException;
 
 /**
@@ -10,7 +11,6 @@ use timesplinter\tsfw\config\exception\LoadException;
  */
 class XmlLoader implements Loader
 {
-
 	/**
 	 * @param string $filePath
 	 *
@@ -21,9 +21,33 @@ class XmlLoader implements Loader
 	public function load($filePath)
 	{
 		$xml = simplexml_load_file($filePath, null, LIBXML_NOCDATA);
-		$json = json_encode($xml);
 
-		return json_decode($json, true);
+		return $this->loadRecursive($xml);
+	}
+
+	protected function loadRecursive(\SimpleXMLElement $xml)
+	{
+		$config = array();
+
+		foreach($xml as $section => $data) {
+			/** @var \SimpleXMLElement $data */
+			if($data->count() === 0) {
+				// leaf
+				$strValue = (string)$data;
+
+				$config[$section] = StringUtils::isInt($strValue) ? (int) $strValue : (StringUtils::isFloat($strValue) ? (float) $strValue : $strValue);
+			} else {
+				// collection
+				$config[$section][] = $this->loadRecursive($data);
+
+				if(is_array($config[$section][0]) === false || count($config[$section][0]) !== 1 || is_array($config[$section][0][key($config[$section][0])]) === false)
+					continue;
+
+				$config[$section] = $config[$section][0][key($config[$section][0])];
+			}
+		}
+
+		return $config;
 	}
 
 	/**
@@ -36,3 +60,5 @@ class XmlLoader implements Loader
 		return !(is_string($filePath) === false || pathinfo($filePath, PATHINFO_EXTENSION) !== 'xml');
 	}
 }
+
+/* EOF */

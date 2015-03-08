@@ -7,10 +7,10 @@ use timesplinter\tsfw\config\resource\Resource;
 class Config
 {
 	/** @var Resource[] */
-    protected $resources;
+	protected $resources;
 	protected $loadedConfig;
-    /** @var ConfigCacheStrategyInterface */
-    protected $cacheStrategy;
+	/** @var ConfigCacheStrategyInterface */
+	protected $cacheStrategy;
 
 	/**
 	 * @param Resource|Resource[] $resources
@@ -49,10 +49,10 @@ class Config
 	/**
 	 * @param ConfigCacheStrategyInterface $cacheStrategy
 	 */
-    /*public function setCacheStrategy(ConfigCacheStrategyInterface $cacheStrategy)
-    {
-        $this->cacheStrategy = $cacheStrategy;
-    }*/
+	/*public function setCacheStrategy(ConfigCacheStrategyInterface $cacheStrategy)
+	{
+	    $this->cacheStrategy = $cacheStrategy;
+	}*/
 }
 
 /* EOF */

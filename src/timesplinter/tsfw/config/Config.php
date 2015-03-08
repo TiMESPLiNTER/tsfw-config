@@ -27,8 +27,6 @@ class Config
 		foreach($this->resources as $resource) {
 			$this->loadedConfig = array_merge_recursive($resource->load(), $this->loadedConfig);
 		}
-
-		echo '<pre>'; var_dump($this->loadedConfig);
 	}
 
 	/**

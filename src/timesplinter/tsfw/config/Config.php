@@ -25,7 +25,7 @@ class Config
 		$this->loadedConfig = array();
 
 		foreach($this->resources as $resource) {
-			$this->loadedConfig = array_merge_recursive($resource->load(), $this->loadedConfig);
+			$this->loadedConfig = self::mergeConfigs($this->loadedConfig, $resource->load());
 		}
 	}
 
@@ -44,6 +44,11 @@ class Config
 		);
 	}
 
+	public function getAll()
+	{
+		return $this->loadedConfig;
+	}
+	
 	/**
 	 * @param ConfigCacheStrategyInterface $cacheStrategy
 	 */
@@ -51,6 +56,35 @@ class Config
 	{
 	    $this->cacheStrategy = $cacheStrategy;
 	}*/
+
+	/**
+	 * Merges two config arrays recursive
+	 * 
+	 * @param array $oldConfig
+	 * @param array $newConfig
+	 *
+	 * @return array
+	 */
+	public static function mergeConfigs($oldConfig, $newConfig)
+	{
+		foreach($newConfig as $key => $value) {
+			$newValue = $value;
+			
+			if(is_int($key) === true) {
+				$oldConfig[] = $newValue;
+			} else {
+				if(is_array($value) === true) {
+					$newValue = isset($oldConfig[$key]) ? self::mergeConfigs($oldConfig[$key], $value) : $value;
+				}
+				
+				$oldConfig[$key] = $newValue;
+			}
+		}
+			
+		reset($oldConfig);
+		
+		return $oldConfig;
+	}
 }
 
 /* EOF */

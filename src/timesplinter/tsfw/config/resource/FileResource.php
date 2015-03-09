@@ -2,7 +2,7 @@
 
 namespace timesplinter\tsfw\config\resource;
 
-use timesplinter\tsfw\config\exception\ConfigException;
+use timesplinter\tsfw\config\Config;
 use timesplinter\tsfw\config\exception\LoadException;
 use timesplinter\tsfw\config\loader\Loader;
 
@@ -38,13 +38,13 @@ class FileResource implements Resource
 					$importResource = new FileResource($baseDir . DIRECTORY_SEPARATOR . $import);
 					$importResource->setLoaders($this->fileLoaders);
 
-					$config = array_merge_recursive($config, $importResource->load());
+					$config = Config::mergeConfigs($config, $importResource->load());
 				}
 
 				unset($loadedConfig['imports']);
 			}
 
-			$config = array_merge_recursive($config, $loadedConfig);
+			$config = Config::mergeConfigs($config, $loadedConfig);
 		}
 
 		return $config;
